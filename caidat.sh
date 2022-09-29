@@ -34,12 +34,8 @@ timeouts 1 5 30 60 180 1800 15 60
 setgid 65535
 setuid 65535
 flush
-auth strong
-users pc1102:CL:pc1102
-flush
-allow pc1102
-//users $(awk -F "/" 'BEGIN{ORS="";} {print $1 "::" $2 " "}' ${WORKDATA})
-//$(awk -F "/" '{print "auth none\n" \
+users $(awk -F "/" 'BEGIN{ORS="";} {print $1 "::" $2 " "}' ${WORKDATA})
+$(awk -F "/" '{print "auth strong\n" \
 "proxy -6 -n -a -p" $4 " -i" $3 " -e"$5"\n" \
 "flush\n"}' ${WORKDATA})
 EOF
